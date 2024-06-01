@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     font-family: "Reddit Mono", monospace;
+     transition: .2s;
+}
+   
+*::-webkit-scrollbar {
+     display: none;
+}
+
+body {
+     background: #001e;
+     padding: 0 1rem;
+     color: #affd;
+}
+
+a {
+     color: #0efe;
+     transition: .2s;
+}
+
+a:hover {
+     color: #001e;
+     text-shadow: 2px 3px 3px #001e;
+     transition: .2s;
+}
