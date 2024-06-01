@@ -13,7 +13,7 @@ const Chat = () => {
     <div className='mt-20 justify-center items-center w-full'>
       <PotentialChats />
       {userChats?.length < 1 ? null :
-      <div className='flex justify-evenly gap-[1rem] items-center'>
+      <div className='flex justify-evenly gap-[1rem] items-center max-md:flex-col'>
         <div className='p-2'>
           {isUserChatsLoading && <p>Loading Chats...</p>}
           {userChats?.map((chat, index) => {
