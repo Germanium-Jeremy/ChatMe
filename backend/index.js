@@ -33,4 +33,4 @@ mongoose
   .then(() => console.log("Mongo Db Connection Connected Successfully"))
   .catch((error) => console.log("Connection Mongo Db Failed: ", error.message));
 
-app.listen(port, (req, res) => console.log("Server Running on port: " + port));
+app.listen(port, () => console.log("Server Running on port: " + port));
