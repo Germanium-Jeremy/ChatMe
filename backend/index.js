@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const userRoute = require("./routes/userRoutes");
 const chatRoute = require("./routes/chatRoutes");
-const messageRoute = require("./routes/messageRoutes")
+const messageRoute = require("./routes/messageRoutes");
 
 require("dotenv").config();
 
@@ -12,7 +12,13 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-// app.use(cors({ origin: 'http://localhost:5173' }));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.use("/api", userRoute);
 app.use("/api", chatRoute);
 app.use("/api", messageRoute);

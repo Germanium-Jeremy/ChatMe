@@ -46,7 +46,7 @@ export const AuthContextProvider = ({children}) => {
           setRegisterLoading(true)
           setRegisterError(null)
 
-          const response = await postRequest(`${baseUrl}/v1/register_new_user`, JSON.stringify(registerInfo))
+          const response = await postRequest(`${baseUrl}/api/v1/register_new_user`, JSON.stringify(registerInfo))
           setRegisterLoading(false)
           if (response.error) {
                return setRegisterError(response)
@@ -59,7 +59,7 @@ export const AuthContextProvider = ({children}) => {
           e.preventDefault()
           setLoginLoading(true)
           setLoginError(null)
-          const response = await postRequest(`${baseUrl}/v1/signin_new_user`, JSON.stringify(loginInfo))
+          const response = await postRequest(`${baseUrl}/api/v1/signin_new_user`, JSON.stringify(loginInfo))
 
           setLoginLoading(false)
 

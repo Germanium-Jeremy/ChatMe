@@ -17,7 +17,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
      useEffect(() => {
           const getUsers = async () => {
-               const response = await getRequest(`${baseUrl}/v1/get_all_users`)
+               const response = await getRequest(`${baseUrl}/api/v1/get_all_users`)
                if (response.error) return console.log("Error fetching Users ", response)
 
                const pChats = response.filter((u) => {
@@ -41,7 +41,7 @@ export const ChatContextProvider = ({ children, user }) => {
                if (user?._id) {
                     setIsUserChatsLoading(true)
                     setUserChatsError(null)
-                    const response = await getRequest(`${baseUrl}/v1/get_all_user_chats/${user?._id}`)
+                    const response = await getRequest(`${baseUrl}/api/v1/get_all_user_chats/${user?._id}`)
                     setIsUserChatsLoading(false)
                     if (response.error) return setUserChatsError(response)
                     setUserChats(response)                    
@@ -54,7 +54,7 @@ export const ChatContextProvider = ({ children, user }) => {
           const getMessages = async () => {
                setIsMessagesLoading(true)
                setMessageError(null)
-               const response = await getRequest(`${baseUrl}/v1/get_user_messages_involved/${currentChat?._id}`)
+               const response = await getRequest(`${baseUrl}/api/v1/get_user_messages_involved/${currentChat?._id}`)
                setIsMessagesLoading(false)
                if (response.error) return setMessageError(response)
                if (response.length > 0) {
@@ -71,7 +71,7 @@ export const ChatContextProvider = ({ children, user }) => {
      }, [])
 
      const createChat = useCallback( async (firstId, secondId) => {
-          const response = await postRequest(`${baseUrl}/v1/create_new_chat`, JSON.stringify({
+          const response = await postRequest(`${baseUrl}/api/v1/create_new_chat`, JSON.stringify({
                firstId, secondId
           }))
           if (response.error) return console.log("Error Creating Chat ...", response)
