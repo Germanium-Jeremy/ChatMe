@@ -1,4 +1,5 @@
-export const baseUrl = "http://localhost:30021/api";
+// export const baseUrl = "http://localhost:30021/api";
+export const baseUrl = "https://vercel.com/jeremy-nks-projects/chat-me/api";
 
 export const postRequest = async (url, body) => {
   const response = await fetch(url, {
@@ -25,16 +26,16 @@ export const postRequest = async (url, body) => {
 };
 
 export const getRequest = async (url) => {
-  const response = await fetch(url)
+  const response = await fetch(url);
 
-  const data = await response.json()
-  if (!response.ok){
-    let message = "An Error Occured..."
-    console.log("Response not ok")
-    if (data?.message){
-      message = data.message
+  const data = await response.json();
+  if (!response.ok) {
+    let message = "An Error Occured...";
+    console.log("Response not ok");
+    if (data?.message) {
+      message = data.message;
     }
-    return { error: true, message}
+    return { error: true, message };
   }
-  return data
-}
+  return data;
+};
