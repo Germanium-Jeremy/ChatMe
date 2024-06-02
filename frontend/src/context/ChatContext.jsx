@@ -12,6 +12,8 @@ export const ChatContextProvider = ({ children, user }) => {
      const [messages, setMessages] = useState(null)
      const [isMessagesLoading, setIsMessagesLoading] = useState(false)
      const [messageError, setMessageError] = useState(null)
+     const [sendTextMessageError, setTextMessageError] = useState(null)
+     const [newMessage, setNewMessage] = useState(null)
 
      console.log("Messages: ", messages);
 
@@ -60,11 +62,25 @@ export const ChatContextProvider = ({ children, user }) => {
                if (response.length > 0) {
                     setMessages(response)
                } else {
-                    console.log("No Response Back")
+                    console.log("No Message Back")
                }
           }
           getMessages()
      }, [currentChat])
+
+     const sendTextMessage = useCallback( async (textMessage, senderId, currentChatId, setTextMessage) => {
+          if (!textMessage) return console.log("No Message ...");
+          const response = await postRequest(`${baseUrl}/api/v1/create_or_send_a_message`, JSON.stringify({
+               chatId: currentChatId,
+               senderId: senderId._id,
+               text: textMessage
+          }))
+          if (response.error) return setTextMessageError(response)
+
+          setNewMessage(response)
+          setMessages((prev) => [...prev, response])
+          setTextMessage("")
+     }, [])
 
      const updateCurrectChat = useCallback((chat) => {
           setCurrentChat(chat)
@@ -75,7 +91,7 @@ export const ChatContextProvider = ({ children, user }) => {
                firstId, secondId
           }))
           if (response.error) return console.log("Error Creating Chat ...", response)
-               setUserChats((prev) => [...prev, response])
+          setUserChats((prev) => [...prev, response])
      }, [])
 
      return (
@@ -88,7 +104,8 @@ export const ChatContextProvider = ({ children, user }) => {
                updateCurrectChat,
                messages,
                isMessagesLoading,
-               messageError
+               messageError,
+               sendTextMessage
           }}>
                {children}
           </ChatContext.Provider>

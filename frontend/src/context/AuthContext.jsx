@@ -20,12 +20,9 @@ export const AuthContextProvider = ({children}) => {
           password: ""
      })
 
-     console.log("Login", loginInfo)
-
      useEffect(() => {
           const user = localStorage.getItem("User")
           if (user) {
-               console.log(user)
                setUser(JSON.parse(user))
           }
 
@@ -77,8 +74,8 @@ export const AuthContextProvider = ({children}) => {
      }, [])
 
      return ( 
-     <AuthContext.Provider value={{ user, registerInfo, updateRegisterInfo, registerUser, registerError, registerLoading, logoutUser, loginUser, loginError, loginInfo, updateLoginInfo, loginLoading }}>
-          {children}
-     </AuthContext.Provider>
+          <AuthContext.Provider value={{ user, registerInfo, updateRegisterInfo, registerUser, registerError, registerLoading, logoutUser, loginUser, loginError, loginInfo, updateLoginInfo, loginLoading }}>
+               {children}
+          </AuthContext.Provider>
      )
 }

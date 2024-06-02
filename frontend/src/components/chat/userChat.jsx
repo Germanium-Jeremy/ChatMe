@@ -4,8 +4,9 @@ import Avator from '../../assets/avator.svg'
 
 const userChat = ({ chat, user }) => {
   const { recipientUser } = useFetchRecipientUser(chat, user)
+  console.log("Recipient User: ", recipientUser)
   return (
-    <div className='flex flex-row gap-[1rem] items-center p-2 justify-between border-b shadow-lg shadow-[#3338] px-[1rem] my-[1rem] cursor-pointer'>
+    <div className='flex flex-row gap-[1rem] items-center p-2 justify-between border-b shadow-lg shadow-[#3338] px-[1rem] mb-[1rem] cursor-pointer hover:bg-[#222a]'>
       <div className='flex justify-center items-center'>
         <div className='mr-3'>
           <img src={Avator} alt={recipientUser?.username} className='h-[40px] w-[40px] rounded-full self-center' />
