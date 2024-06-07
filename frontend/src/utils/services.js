@@ -1,5 +1,5 @@
-export const baseUrl = "http://localhost:30021";
-// export const baseUrl = "https://chat-me-iota-livid.vercel.app";
+// export const baseUrl = "http://localhost:30021";
+export const baseUrl = "https://chat-me-iota-livid.vercel.app";
 
 export const postRequest = async (url, body) => {
   const response = await fetch(url, {
